@@ -1,7 +1,10 @@
 // Chip8 Emulator by g0jirasan
 // Thanks to arnsa for his Chip8 emulator: https://github.com/arnsa/Chip-8-Emulator/blob/master/chip8.c
 // and emulator101.com
-//TODO: Error handling!
+//TODO: Error handling!, comments
+
+// gcc Chip8.c -o Chip8 -lSDL2
+
 #include <SDL2/SDL.h>
 #include <stdio.h>
 #include <stdint.h>
@@ -45,9 +48,9 @@ typedef struct Chip8State
 	FILE * game;
 
 	uint8_t		V[16]; 		//Registers
-	uint16_t	I;	   		//I register
-	uint16_t	SP;	   		//Stack pointer	
-	uint16_t	PC;	   		//Program counter (Instruction pointer)	 
+	uint16_t	I;	   	//I register
+	uint16_t	SP;	   	//Stack pointer	
+	uint16_t	PC;	   	//Program counter (Instruction pointer)	 
 	uint8_t		delay; 		//Delay timer
 	uint8_t		sound;		//Sound timer
 	uint16_t	stack[STACK_SIZE];
