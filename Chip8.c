@@ -551,12 +551,6 @@ int main (int argc, char *argv[])
 		{
 			case SDL_QUIT:
 				quit = 1;
-			case SDL_KEYDOWN:
-				UpdateKeys(state->keys);
-				printf("KEY PRESSED\n");
-				printf("%d\n", state->keys[7] );
-			case SDL_KEYUP:
-				UpdateKeys(state->keys);
 
 			break;
 		}
