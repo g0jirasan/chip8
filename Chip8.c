@@ -161,7 +161,6 @@ void Emulate(Chip8State *state)
 			{
 				case 0x00EE:
 				{
-					printf("%X\n", state->stack[state->SP]);
 					state->PC = state->stack[state->SP];
 					state->SP -= 1;
 					state->PC += 2;			
@@ -171,7 +170,6 @@ void Emulate(Chip8State *state)
 				{
 					memset(state->graphics, 0xFF000000, sizeof(state->graphics));
 					state->PC += 2;	
-					printf("DONT EXECUTE ME!!");
 				}
 				break;
 			} 
@@ -186,8 +184,6 @@ void Emulate(Chip8State *state)
 				state->SP += 1;
 				state->stack[state->SP] = state->PC;
 				state->PC = NNN;
-
-				printf("CALL, stack: %X, NNN: %X\n", state->memory[state->SP], state->PC);
 			} 
 			break;
 		case 0x3000: // SKIPE 3XNN
@@ -223,7 +219,6 @@ void Emulate(Chip8State *state)
 			break;
 		case 0x6000: // SET 6XNN
 			{
-				//printf("%s\n", "MOV" );
 				state->V[X] = NN;
 				state->PC += 2;
 			} 
@@ -333,7 +328,6 @@ void Emulate(Chip8State *state)
 			break;
 		case 0xA000: 
 			{
-				printf("%s\n", "SETI");
 				state->I = NNN;
 				state->PC += 2;
 			} 
@@ -383,37 +377,37 @@ void Emulate(Chip8State *state)
 		case 0xE000:
 			switch(state->op & 0x00FF)
 			{
-                    case 0x009E: // EX9E: Skips the next instruction if the key stored in VX is pressed
-						{	
-							if(state->keys[X] == 1)
-							{
-                           		state->PC += 4;
-                           		//break;
-							}
-                        	else
-                        	{	
-                            	state->PC += 2;
-                            	//break;
-                            }
-                        }
-                    break;
+                   	 case 0x009E: // EX9E: Skips the next instruction if the key stored in VX is pressed
+				{	
+					if(state->keys[X] == 1)
+					{
+                           			state->PC += 4;
+                           			//break;
+					}
+                        		else
+                        		{	
+                            		state->PC += 2;
+                            			//break;
+                           		 }
+                       		}
+                    		break;
                              
-                    case 0x00A1: // EXA1: Skips the next instruction if the key stored in VX isn't pressed
-                    	{
-							if(state->keys[X] == 0)
-							{
-                           		state->PC += 4;
-                           		//break;
-							}
-                        	else
-                        	{	
-                            	state->PC += 2;
-                            	break;                            
-                        	}
-                        }
-                    	break;                         
-                }
-				break;
+                    	case 0x00A1: // EXA1: Skips the next instruction if the key stored in VX isn't pressed
+                    		{
+					if(state->keys[X] == 0)
+					{
+                           			state->PC += 4;
+                           			break;
+					}
+                        		else
+                        		{	
+                            			state->PC += 2;
+                            			break;                            
+                        		}
+                       		}
+                    		break;                         
+                	}
+			break;
 
 		case 0xF000:
 			switch(state->op & 0x00FF)
