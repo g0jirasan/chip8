@@ -1,6 +1,7 @@
 // Chip8 Emulator by g0jirasan
 // Thanks to arnsa for his Chip8 emulator: https://github.com/arnsa/Chip-8-Emulator/blob/master/chip8.c
 // and emulator101.com
+//TODO: Error handling!
 #include <SDL2/SDL.h>
 #include <stdio.h>
 #include <stdint.h>
@@ -147,6 +148,7 @@ void Emulate(Chip8State *state)
 	uint8_t Y = (state->op & 0x00F0) >> 4;
 	uint16_t NN = state->op & 0x00FF;
 	uint16_t NNN = state->op & 0x0FFF;
+	UpdateKeys(state->keys);
 	printf("Instruction: %X Address: %X I: %X SP: %X\n ", state->op, state->PC, state->I, state->SP);
 
 	switch(state->op & 0xF000)
@@ -551,7 +553,7 @@ int main (int argc, char *argv[])
 		{
 			case SDL_QUIT:
 				quit = 1;
-
+			//TODO: Implement other keys
 			break;
 		}
 
