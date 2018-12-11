@@ -1,7 +1,7 @@
 // Chip8 Emulator by g0jirasan
 // Thanks to arnsa for his Chip8 emulator: https://github.com/arnsa/Chip-8-Emulator/blob/master/chip8.c
 // and emulator101.com
-//TODO: Error handling!, comments
+//TODO: Error handling!, comments, Destroy SDL texture/renderer
 
 // gcc Chip8.c -o Chip8 -lSDL2
 
